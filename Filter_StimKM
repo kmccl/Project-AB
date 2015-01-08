@@ -5,13 +5,13 @@ clear all
 close all
 
 % Load audiogram from XLS file
-[data, txt, raw] = xlsread('Audio2.xls'); 
+[data, txt, raw] = xlsread('PracticeSubjectRL.xls'); 
 
 % Transpose data
 data = data';
 
 % Plot audiogram
-plot(data(:,1), data(:,4), 'ro--')
+plot(data(:,1), data(:,6), 'ro--')
 set(gca, 'Ydir', 'reverse');
 xlabel('Frequency (Hz)');
 ylabel('dB SPL');
@@ -36,8 +36,8 @@ plot(f, amp);
 
 % Compute filter response function from audiogram
 figure, hold on
-audiogram = data(1:7, 4); 
-frequencies = [data(1:7,1)'];
+audiogram = data(1:6, 6); 
+frequencies = [data(1:6,1)'];
 
 % Now find the cloest frequencies to these audiogram frequencies and use
 % those
@@ -106,7 +106,7 @@ plot([ba recon_ba_sc])
 
 % 
 % %creates the new .wav file
-wavwrite(recon_ba_sc, fs, 32, 'MMBF7_2.wav'); %USE FOR KATE'S COMPUTER
+wavwrite(recon_ba_sc, fs, 32, 'MMBF7_PracticeSubjectRL.wav'); %USE FOR KATE'S COMPUTER
 %audiowrite(recon_ba, fs, 32, 'MMBF_#.wav'); USE FOR TESTING
 
 % Use this stimulus file and the headphone amplifier for presentation at an
