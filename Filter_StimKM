@@ -5,7 +5,8 @@ clear all
 close all
 
 % Load audiogram from XLS file
-[data, txt, raw] = xlsread('PracticeSubjectRL.xls'); 
+[FileName,PathName]=uigetfile('*.xls','Select the subject Audiogram')
+[data,txt,raw] = xlsread([PathName FileName])
 
 % Transpose data
 data = data';
@@ -97,17 +98,18 @@ recon_ba= real(ifft(recon_fft));
 recon_ba = recon_ba(1:length(ba));
 
 % RMS normalize ba
-% recon_ba_sc = recon_ba.*(rms(ba)./rms(recon_ba)); %USE FOR TESTING
-recon_ba_sc = recon_ba.* (max(abs(ba))./max(abs(recon_ba))); %USE FOR KATE'S COMPUTER
+recon_ba_sc = recon_ba.*(rms(ba)./rms(recon_ba)); %USE FOR TESTING
+%recon_ba_sc = recon_ba.* (max(abs(ba))./max(abs(recon_ba))); %USE FOR KATE'S COMPUTER
 
 figure
 hold on
 plot([ba recon_ba_sc])
 
-% 
-% %creates the new .wav file
-%wavwrite(recon_ba_sc, fs, 32, 'MMBF7_PracticeSubjectRL.wav'); %USE FOR KATE'S COMPUTER
-audiowrite(recon_ba, fs, 32, 'MMBF_PracticeSubjectRL.wav'); %USE FOR TESTING
+%creates the new .wav file
+[filename, pathname] = uiputfile('*.wav', 'Choose a file name'); 
+outname = fullfile(pathname, filename); 
+wavwrite(recon_ba_sc, fs, 32,outname); %USE FOR KATE'S COMPUTER
+%audiowrite(recon_ba, fs, 32, 'HLU_1.wav'); %USE FOR TESTING
 
 % Use this stimulus file and the headphone amplifier for presentation at an
 % SL level depending on their 3 frequency PTA (.5 1 and 2kHz)
