@@ -17,8 +17,8 @@ xlabel('Frequency (Hz)');
 ylabel('dB SPL');
 
 % Load MMBF7.wav (/ba/)
-[ba, fs] = wavread('MMBF7.wav'); %USE FOR KATE'S COMPUTER
-%[ba, fs] = audioread('MMBF7.wav'); %USE FOR TESTING
+%[ba, fs] = wavread('MMBF7.wav'); %USE FOR KATE'S COMPUTER
+[ba, fs] = audioread('MMBF7.wav'); %USE FOR TESTING
 % Plot ba
 plot(ba); 
 
@@ -106,25 +106,8 @@ plot([ba recon_ba_sc])
 
 % 
 % %creates the new .wav file
-wavwrite(recon_ba_sc, fs, 32, 'MMBF7_PracticeSubjectRL.wav'); %USE FOR KATE'S COMPUTER
-%audiowrite(recon_ba, fs, 32, 'MMBF_#.wav'); USE FOR TESTING
+%wavwrite(recon_ba_sc, fs, 32, 'MMBF7_PracticeSubjectRL.wav'); %USE FOR KATE'S COMPUTER
+audiowrite(recon_ba, fs, 32, 'MMBF_PracticeSubjectRL.wav'); %USE FOR TESTING
 
 % Use this stimulus file and the headphone amplifier for presentation at an
 % SL level depending on their 3 frequency PTA (.5 1 and 2kHz)
-
-
-
-% 
-% % Scale (filter) the amplitude spectrum
-% amp_mask = amp(mask);
-% amp_mask = amp_mask(2:end); % remove 
-% amp(mask) = amp(mask).*db2amp(interp_audiogram); 
-% 
-% 
-% display('');
-% % Time-domain filtering
-% %   Use FIR2 to estimate FIR of our frequency response
-% % filt = fir2(100, 
-% % Frequency domain filtering
-% 
-% % Plot and compare spectra using two filtering methods
