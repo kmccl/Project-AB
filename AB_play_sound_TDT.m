@@ -1,7 +1,7 @@
 %This is a stimulus presentation file (TDT,neuroscan) created by CWB.
 
-
-file2play = fullfile(pwd, '..', 'stims', 'MMBF7_2.wav');
+[FileName,PathName]=uigetfile('*.wav','Select the appropriate /ba/ stimulus')
+file2play = [PathName FileName];
 circuit = fullfile(pwd, '..', 'RP_Files', 'AB.rcx'); 
 ntrials = 100;
 fslevel=2;  %  2.441406250000000e+04
