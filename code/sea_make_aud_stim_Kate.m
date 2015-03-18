@@ -27,7 +27,7 @@ ylabel('dB SPL');
 
 %filter /ba/ using function {individ_filter_stim_noscaling}
 [recon_snd] = individ_filter_stim_noscaling(ba, fs, audiogram, frequencies);
-recon_ba_sc = recon_snd * 0.5;
+recon_ba_sc = recon_snd * 0.3;
 
 figure
 hold on
@@ -38,6 +38,8 @@ legend('Original Sound', 'Filtered Sound', 'Scaled Filtered Sound')
 outname = fullfile(pathname, filename);
 audiowrite(outname, recon_ba_sc, fs, 'bitspersample', 32);
 
+%close all the figures that pop up:
+%close all
 
 % figure
 % hold on
