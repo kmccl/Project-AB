@@ -1,5 +1,5 @@
 [FileName,PathName]=uigetfile('*.wav','Select the appropriate /ba/ stimulus')
-% file2play = [PathName FileName];
+file2play = [PathName FileName];
 circuit = fullfile(pwd, '..', 'RP_Files', 'AB.rcx'); 
 ntrials = 400;
 fslevel=2;  %  2.441406250000000e+04
