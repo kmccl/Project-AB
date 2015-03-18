@@ -1,15 +1,15 @@
-%This is a stimulus presentation file (TDT,neuroscan) created by CWB.
-
 [FileName,PathName]=uigetfile('*.wav','Select the appropriate /ba/ stimulus')
 file2play = [PathName FileName];
 circuit = fullfile(pwd, '..', 'RP_Files', 'AB.rcx'); 
-ntrials = 100;
+ntrials = 400;
 fslevel=2;  %  2.441406250000000e+04
 trigdur=0.02; % in seconds
 trigdelay=1.24 + 63; % Delay trigger by 1.24 ms.  (in msecs)
 code = 10; 
 
-isi = [ 1.993 1.993]; % in seconds
+% isi = [0 0];
+isi = [2 2.25]; % in seconds--this specifies the jitter window
+% [2 2.25] 
 
 %% LOAD STIMULI
 %   Load using AA_loaddata. Only accept wave/double/single data types. 
@@ -69,6 +69,12 @@ RP.Run;
 % make an 'edit' uicontrol to show the sweeps
 tdisplay = uicontrol('style','edit','string', sprintf('Trial Number\nTime to Completion'),'units','normalized','position',[.2 .6 .6 .3], 'Max', 3, 'Min', 1);
 
+% % Create a pause function for Kate
+% pauseKey = KbName('P');
+% KbQueueCreate([]);
+% while KbCheck; end % Wait until all keys are released.
+% KbQueueStart([]);
+
 for n=1:ntrials
     
     % Present stimulus/drop trigger
@@ -85,5 +91,15 @@ for n=1:ntrials
     
     % Pause for a while
     pause(jit); 
+    
+    % Check keyboard
+%     [ pressed, firstPress]=KbQueueCheck([]);
+%     if firstPress(pauseKey)
+%         input('Press enter to continue'); 
+%     end %
+    
     toc
 end % for n=1:ntrials
+
+% Close keyboard queue
+% KbQueueRelease([])
