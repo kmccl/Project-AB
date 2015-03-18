@@ -23,20 +23,20 @@ ylabel('dB SPL');
 
 %load unfiltered /ba/
 %[ba, fs] = audioread('MMBF7.wav');
-[ba, fs] = audioread('MMBF7.wav');
+[ba, fs] = audioread('MMBF7_scaled.wav');
 
 %filter /ba/ using function {individ_filter_stim_noscaling}
 [recon_snd] = individ_filter_stim_noscaling(ba, fs, audiogram, frequencies);
-recon_ba_sc = recon_snd * 0.3;
+%recon_ba_sc = recon_snd * 0.3;
 
 figure
 hold on
-plot([ba recon_snd recon_ba_sc])
-legend('Original Sound', 'Filtered Sound', 'Scaled Filtered Sound')
+plot([ba recon_snd])
+legend('Original Sound', 'Filtered Sound')
 
 [filename, pathname] = uiputfile('*.wav', 'Choose a file name'); 
 outname = fullfile(pathname, filename);
-audiowrite(outname, recon_ba_sc, fs, 'bitspersample', 32);
+audiowrite(outname, recon_snd, fs, 'bitspersample', 32);
 
 %close all the figures that pop up:
 %close all
