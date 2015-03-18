@@ -17,6 +17,9 @@
 %fn = [sub_dir,'Group',num2str(grp_id),'_',num2str(sub_id),'.xls'];
 %[data, txt, raw] = xlsread(fn);
 
+clear all 
+close all
+
 % Load audiogram from XLS file
 [FileName,PathName]=uigetfile('*.xls','Select the subject Audiogram')
 [data,txt,raw] = xlsread([PathName FileName])
