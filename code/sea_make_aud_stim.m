@@ -1,4 +1,4 @@
-function [all_rms] = sea_make_aud_stim(grp_id, sub_id, main_study_dir)
+%function [all_rms] = sea_make_aud_stim(grp_id, sub_id, main_study_dir)
 % function sea_make_aud_stim(sub_id)
 % grp_id = a number (1 to 3)
 % sub_id = a number (1 to 30)
@@ -7,21 +7,29 @@ function [all_rms] = sea_make_aud_stim(grp_id, sub_id, main_study_dir)
 % Loops through both real and practice stim.
 % K. Backer, February & March 2015.
 
-sub_dir = [main_study_dir,'Group',num2str(grp_id),filesep,num2str(sub_id),filesep];
-out_dirs = {'Adjusted_Sounds' 'Practice_Adjusted_Sounds'};
+% Modified for use on Project AB 
+% KM 3/18/15
+
+%sub_dir = [main_study_dir,'Group',num2str(grp_id),filesep,num2str(sub_id),filesep];
+%out_dirs = {'Filtered_Ba'};
 
 % Load in Audiogram Spreadsheet for this subject:
-fn = [sub_dir,'Group',num2str(grp_id),'_',num2str(sub_id),'.xls'];
-[data, txt, raw] = xlsread(fn);
+%fn = [sub_dir,'Group',num2str(grp_id),'_',num2str(sub_id),'.xls'];
+%[data, txt, raw] = xlsread(fn);
+
+% Load audiogram from XLS file
+[FileName,PathName]=uigetfile('*.xls','Select the subject Audiogram')
+[data,txt,raw] = xlsread([PathName FileName])
 
 % Transpose data:
 data = data';
-audiogram = data(1:8, 6); % 1:8 selects audiogram frequencies up to 8000 Hz
+audiogram = data(1:7, 6); % 1:8 selects audiogram frequencies up to 8000Hz
+% 5000 Hz--Adding in the mean of 4000Hz and 6000Hz for /ba/ that has a Nyquist of 5000 Hz
 sprintf('Original min of audiogram: %s',num2str(min(audiogram)))
-frequencies = [data(1:8,1)'];
+frequencies = [data(1:7,1)'];
 
 % Plot audiogram
-figure, plot(data(:,1), data(:,6), 'ro--');
+figure, plot(data(1:7,1), data(1:7,6), 'ro--');
 set(gca, 'Ydir', 'reverse');
 xlabel('Frequency (Hz)');
 ylabel('dB SPL');
