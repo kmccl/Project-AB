@@ -7,7 +7,7 @@ trigdur=0.02; % in seconds
 trigdelay=1.24 + 63; % Delay trigger by 1.24 ms.  (in msecs)
 code = 10; 
 
-% isi = [0 0];
+%isi = [0 0];
 isi = [2 2.25]; % in seconds--this specifies the jitter window
 % [2 2.25] 
 
@@ -70,10 +70,10 @@ RP.Run;
 tdisplay = uicontrol('style','edit','string', sprintf('Trial Number\nTime to Completion'),'units','normalized','position',[.2 .6 .6 .3], 'Max', 3, 'Min', 1);
 
 % % Create a pause function for Kate
-% pauseKey = KbName('P');
-% KbQueueCreate([]);
-% while KbCheck; end % Wait until all keys are released.
-% KbQueueStart([]);
+pauseKey = KbName('P');
+KbQueueCreate([]);
+while KbCheck; end % Wait until all keys are released.
+KbQueueStart([]);
 
 for n=1:ntrials
     
@@ -93,13 +93,13 @@ for n=1:ntrials
     pause(jit); 
     
     % Check keyboard
-%     [ pressed, firstPress]=KbQueueCheck([]);
-%     if firstPress(pauseKey)
-%         input('Press enter to continue'); 
-%     end %
+    [ pressed, firstPress]=KbQueueCheck([]);
+    if firstPress(pauseKey)
+        input('Press enter to continue'); 
+    end %
     
     toc
 end % for n=1:ntrials
 
 % Close keyboard queue
-% KbQueueRelease([])
+KbQueueRelease([])
