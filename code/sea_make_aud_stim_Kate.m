@@ -5,8 +5,8 @@ clear all
 close all
 
 % Load audiogram from XLS file
-[FileName,PathName]=uigetfile('*.xls','Select the subject Audiogram')
-[data,txt,raw] = xlsread([PathName FileName])
+[FileName,PathName]=uigetfile('*.xls','Select the subject Audiogram');
+[data,txt,raw] = xlsread([PathName FileName]);
 
 % Transpose data:
 data = data';
@@ -16,7 +16,7 @@ sprintf('Original min of audiogram: %s',num2str(min(audiogram)))
 frequencies = [data(1:7,1)'];
 
 % Plot audiogram
-figure, plot(data(1:7,1), data(1:7,6), 'ro--');
+figure, plot(frequencies, audiogram, 'ro--');
 set(gca, 'Ydir', 'reverse');
 xlabel('Frequency (Hz)');
 ylabel('dB SPL');
@@ -28,6 +28,11 @@ ylabel('dB SPL');
 %filter /ba/ using function {individ_filter_stim_noscaling}
 [recon_snd] = individ_filter_stim_noscaling(ba, fs, audiogram, frequencies);
 %recon_ba_sc = recon_snd * 0.3;
+
+% Send a warning if the sound will clip during writing
+if max(max(abs(recon_snd))) >= 1
+    error('Sound clipped!');
+end 
 
 figure
 hold on
