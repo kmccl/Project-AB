@@ -2,7 +2,7 @@
 %it, and writes it to a file KM 3/18/15
 
 [ba, fs] = audioread('MMBF7.wav');
-ba_scaled = ba * 0.3;
+ba_scaled = ba * 0.02;
 
 figure
 hold on

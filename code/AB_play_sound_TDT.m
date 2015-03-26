@@ -4,7 +4,7 @@ circuit = fullfile(pwd, '..', 'RP_Files', 'AB.rcx');
 ntrials = 400;
 fslevel=2;  %  2.441406250000000e+04
 trigdur=0.02; % in seconds
-trigdelay=1.24 + 63; % Delay trigger by 1.24 ms.  (in msecs)
+trigdelay=1.24 + 63; % Delay trigger by 1.24 ms.  (in msecs)  p
 code = 10; 
 
 %isi = [0 0];
