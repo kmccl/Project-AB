@@ -1,8 +1,8 @@
 %This is an unnecessary program that reads in the stimulus I want, scales
 %it, and writes it to a file KM 3/18/15
 
-[ba, fs] = audioread('MMBF7.wav');
-ba_scaled = ba * 0.045;
+[ba, fs] = audioread('MMBF15.wav');
+ba_scaled = ba * 0.05;
 
 figure
 hold on

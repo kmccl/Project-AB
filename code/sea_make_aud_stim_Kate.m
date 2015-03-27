@@ -23,7 +23,7 @@ ylabel('dB SPL');
 
 %load unfiltered /ba/
 %[ba, fs] = audioread('MMBF7.wav');
-[ba, fs] = audioread('MMBF7_scaled_045.wav');
+[ba, fs] = audioread('MMBF15_05.wav');
 
 %filter /ba/ using function {individ_filter_stim_noscaling}
 [recon_snd] = individ_filter_stim_noscaling(ba, fs, audiogram, frequencies);
