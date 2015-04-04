@@ -173,7 +173,7 @@ axis xy; axis tight;
 xlabel('Time')
 ylabel('Frequency')
 title('Individualized Sound NOT SCALED')
-caxis([0 max(max(Pamp))]) % Plots same scale as previous graph.
+%caxis([0 max(max(Pamp))]) % Plots same scale as previous graph.
 colorbar
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % END OF NEW ADDITION, FOR PLOTTING SPECTROGRAMS

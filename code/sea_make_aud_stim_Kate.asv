@@ -10,7 +10,7 @@ close all
 
 % Transpose data:
 data = data';
-audiogram = data(1:7, 9); % 1:8 selects audiogram frequencies up to 8000Hz
+audiogram = data(1:7, 7); % 1:8 selects audiogram frequencies up to 8000Hz
 % 5000 Hz--Adding in the mean of 4000Hz and 6000Hz for /ba/ that has a Nyquist of 5000 Hz
 sprintf('Original min of audiogram: %s',num2str(min(audiogram)))
 frequencies = [data(1:7,1)'];
@@ -27,7 +27,7 @@ ylabel('dB SPL');
 
 %filter /ba/ using function {individ_filter_stim_noscaling}
 [recon_snd] = individ_filter_stim_noscaling(ba, fs, audiogram, frequencies);
-%recon_ba_sc = recon_snd * 0.3;
+recon_snd = recon_snd * 100; % Scale sound back up, because the new method 
 
 % Send a warning if the sound will clip during writing
 if max(max(abs(recon_snd))) >= 1
