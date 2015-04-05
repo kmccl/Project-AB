@@ -7,7 +7,7 @@ trigdur=0.02; % in seconds
 trigdelay=1.24 + 63; % Delay trigger by 1.24 ms.  (in msecs)  p
 code = 10; 
 
-isi = [0 0];
+ isi = [0 0];
 %isi = [2 2.25]; % in seconds--this specifies the jitter window
 % [2 2.25] 
 
