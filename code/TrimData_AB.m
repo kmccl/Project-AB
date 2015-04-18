@@ -4,7 +4,7 @@
 %and stolen by KSM on 1/13/15
 
 [FileName,PathName]=uigetfile('*.wav','Select the Subject .wav file for calibration')
-[data, fs] = audioread([PathName FileName])
+[data, fs] = audioread([PathName FileName]);
 [data_trim] = threshclipaudio(data, eps, 'begin&end');
 [x, y, lags] = align_timeseries(data, data_trim, 'xcorr', 'fsx', 10000, 'fsy', 10000, 'pflag', 2);
 size(data_trim)

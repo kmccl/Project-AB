@@ -6,10 +6,10 @@
 clear all
 close all
 
-[FileName,PathName]=uigetfile('*.wav','Select the Subject .wav file for calibration')
-[data, fs] = audioread([PathName FileName])
+[FileName,PathName]=uigetfile('*.wav','Select the Subject .wav file for calibration');
+[data, fs] = audioread([PathName FileName]);
 
-data_scaled = data.*80;
+data_scaled = data.*197.3050;
 
 max(abs(data_scaled))
 
