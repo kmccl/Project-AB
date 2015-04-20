@@ -3,8 +3,8 @@
 figure,plot(data)
 data_abs = abs(data);
 scaling_factor = .9999/max(data_abs)
-scaling_comparison=(scaling_factor)-[197.3050]
-db_comparison=[db(scaling_factor)]-[db(197.3050)]
+scaling_comparison = [197.3050] - (scaling_factor)
+db_comparison =[[db(197.3050)] - [db(scaling_factor)]]
 data_scaled=data.*scaling_factor;
 hold on, plot([data data_scaled])
 legend('Original Sound', 'Scaled Sound')
