@@ -10,7 +10,7 @@ close all
 
 % Transpose data:
 data = data';
-audiogram = data(1:7, 8); % 1:8 selects audiogram frequencies up to 8000Hz
+audiogram = data(1:7, 7); % 1:8 selects audiogram frequencies up to 8000Hz
 % 5000 Hz--Adding in the mean of 4000Hz and 6000Hz for /ba/ that has a Nyquist of 5000 Hz
 sprintf('Original min of audiogram: %s',num2str(min(audiogram)))
 frequencies = [data(1:7,1)'];
