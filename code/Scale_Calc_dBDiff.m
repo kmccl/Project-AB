@@ -1,4 +1,7 @@
-%This file was created to 
+%This file was created to find the maximum scaling factor for each
+%individualized file, get the dB and compare that to the "perfect audio"
+%scaling factor dB to find the amount of change for the attenuator. 
+%KSM April 2015
 clear all
 close all
 

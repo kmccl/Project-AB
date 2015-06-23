@@ -1,15 +1,15 @@
 [FileName,PathName]=uigetfile('*.wav','Select the appropriate /ba/ stimulus')
 file2play = [PathName FileName];
 circuit = fullfile(pwd, '..', 'RP_Files', 'AB.rcx'); 
-ntrials = 20;
+ntrials = 410;
 fslevel=2;  %  2.441406250000000e+04
 trigdur=0.02; % in seconds
 trigdelay=1.24 + 63; % Delay trigger by 1.24 ms.  (in msecs)  p
 code = 10; 
 
 % isi = [0 0];
-% isi = [2 2.25]; % in seconds--this specifies the jitter window
-isi = [1 1]
+pisi = [2 2.25]; % in seconds--this specifies the jitter window
+% isi = [1 1]
 % [2 2.25] 
 
 %% LOAD STIMULI
