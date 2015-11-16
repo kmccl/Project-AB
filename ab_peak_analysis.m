@@ -215,7 +215,9 @@ for c = 1:numel(conds) % loop through each condition.
                 figure,plot(msecs(latidx-window_samples:latidx+window_samples),filt_erps(ch_to_plot,[latidx-window_samples:latidx+window_samples])');
                 title(sprintf('Select the Peak for %s',comps{co}))
                 [x, y] = ginput(1);
-                %%%%%%
+                %%%%%% 
+                % latwindow =
+                % (msecs(latidx-window_samples:latidx+window_samples),filt_erps((ch_to_plot,[latidx-window_samples:latidx+window_samples])')
                 close;
                 %filt_erps is filled in where there was VARIABLE name
                 % Now, because where you click may not correspond to an
