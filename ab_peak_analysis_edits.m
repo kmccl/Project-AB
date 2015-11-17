@@ -39,7 +39,7 @@ grand_avg_sl = (hla_sl_erps + hlu_sl_erps + nh_sl_erps)/3;
 % Now, plot the grand averages for the SPL and SL Conditions and then
 % select the grand peaks for the P1, N1, and P2:
 % msecs variable should be loaded with the Group ERP .mat files.
-ch_to_plot = 50;
+ch_to_plot = 61;
 %ch_to_plot = mean_erps_cluster;
 figure,plot(msecs, grand_avg_spl(ch_to_plot,:));
 [x, y] = ginput(numel(comps)); % Select the peak P1, N1, and P2 in that order.
@@ -162,7 +162,7 @@ end % for x
 
 % for n=1:length(PCA_comp_chan)
 %     ch_to_plot=(PCA_comp_chan )
-ch_to_plot= 50
+ch_to_plot= 61
 window_length = 40; % ms, Will plot +/- 20/40/80 ms on each side of the peak latency.
 window_samples = round(window_length/(1000/EEG.srate));
 fid = fopen([in_dir,'ALL_Latencies.txt'],'wt');
@@ -209,30 +209,30 @@ for c = 1:numel(conds) % loop through each condition.
             lats = [];
             amps = [];
             %for co = 1:numel(comps)
-                for co1=comps(1)
-                %[tempmin,latidx] = min(abs(msecs-peaklats(co1)));
-                [P1_lat,P1_idx]=max(filt_erps(ch_to_plot,[latidx-window_samples:latidx+window_samples])');
+                 co1=comps(1)
+                [tempmin,latidx] = min(abs(msecs-peaklats(1)));
+                [P1_amp,P1_idx]=max(filt_erps(ch_to_plot,[latidx-window_samples:latidx+window_samples])');
                 P1_window=msecs(latidx-window_samples:latidx+window_samples),filt_erps(ch_to_plot,[latidx-window_samples:latidx+window_samples])';
-                P1_amp=P1_window(P1_idx);
+                P1_lat=P1_window(P1_idx);
                 close;
-                end
+                
               
                 
-                for co2=comps(2)
-                %[tempmin,latidx] = min(abs(msecs-peaklats(co2)));
-                [N1_lat,N1_idx]=min(filt_erps(ch_to_plot,[latidx-window_samples:latidx+window_samples])');
+                co2=comps(2)
+                [tempmin,latidx] = min(abs(msecs-peaklats(2)));
+                [N1_amp,N1_idx]=min(filt_erps(ch_to_plot,[latidx-window_samples:latidx+window_samples])');
                  N1_window=msecs(latidx-window_samples:latidx+window_samples),filt_erps(ch_to_plot,[latidx-window_samples:latidx+window_samples])';
-                 N1_amp=N1_window(N1_idx);
+                 N1_lat=N1_window(N1_idx);
                 close;
-                end
                 
-                for co3=comps(3)
-                %[tempmin,latidx] = min(abs(msecs-peaklats(co3)));
-                [P2_lat,P2_idx]=max(filt_erps(ch_to_plot,[latidx-window_samples:latidx+window_samples])');
+                
+                 co3=comps(3)
+                [tempmin,latidx] = min(abs(msecs-peaklats(3)));
+                [P2_amp,P2_idx]=max(filt_erps(ch_to_plot,[latidx-window_samples:latidx+window_samples])');
                  P2_window=msecs(latidx-window_samples:latidx+window_samples),filt_erps(ch_to_plot,[latidx-window_samples:latidx+window_samples])';
-                 P2_amp=P2_window(P2_idx);
+                 P2_lat=P2_window(P2_idx);
                 close;
-                end
+                
                 
                 lats(1) = P1_lat;
                 lats(2) = N1_lat;
