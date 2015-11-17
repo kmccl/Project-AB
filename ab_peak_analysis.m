@@ -39,7 +39,7 @@ grand_avg_sl = (hla_sl_erps + hlu_sl_erps + nh_sl_erps)/3;
 % Now, plot the grand averages for the SPL and SL Conditions and then
 % select the grand peaks for the P1, N1, and P2:
 % msecs variable should be loaded with the Group ERP .mat files.
-ch_to_plot = 50;
+ch_to_plot = 61;
 %ch_to_plot = mean_erps_cluster;
 figure,plot(msecs, grand_avg_spl(ch_to_plot,:));
 [x, y] = ginput(numel(comps)); % Select the peak P1, N1, and P2 in that order.
@@ -162,7 +162,7 @@ end % for x
 
 % for n=1:length(PCA_comp_chan)
 %     ch_to_plot=(PCA_comp_chan )
-ch_to_plot= 50
+ch_to_plot= 61
 window_length = 40; % ms, Will plot +/- 20/40/80 ms on each side of the peak latency.
 window_samples = round(window_length/(1000/EEG.srate));
 fid = fopen([in_dir,'ALL_Latencies.txt'],'wt');
@@ -208,37 +208,66 @@ for c = 1:numel(conds) % loop through each condition.
             % specified above, surrounding the peak:            
             lats = [];
             amps = [];
-            for co = 1:numel(comps)
-                %for co1=comps(1)
-                %[tempmin, latidx] = min(abs(msecs-peaklats(co)));
-                %latwin=(msecs(latidx-window_samples:latidx+window_samples),filt_erps(ch_to_plot,[latidx-window_samples:latidx+window_samples])');
-                
-                % Get the data (latency) index corresponding to the peak
-                % latency in the grand grand average ERP:
-                [tempmin, latidx] = min(abs(msecs-peaklats(co)));
-                figure,plot(msecs(latidx-window_samples:latidx+window_samples),filt_erps(ch_to_plot,[latidx-window_samples:latidx+window_samples])');
-                title(sprintf('Select the Peak for %s',comps{co}))
-                [x, y] = ginput(1);
-                %%%%%% 
-                % 
-                
+            %for co = 1:numel(comps)
+                 co1=comps(1)
+                [tempmin,latidx] = min(abs(msecs-peaklats(1)));
+                [P1_amp,P1_idx]=max(filt_erps(ch_to_plot,[latidx-window_samples:latidx+window_samples])');
+                P1_window=msecs(latidx-window_samples:latidx+window_samples),filt_erps(ch_to_plot,[latidx-window_samples:latidx+window_samples])';
+                P1_lat=P1_window(P1_idx);
                 close;
+                
+              
+                
+                co2=comps(2)
+                [tempmin,latidx] = min(abs(msecs-peaklats(2)));
+                [N1_amp,N1_idx]=min(filt_erps(ch_to_plot,[latidx-window_samples:latidx+window_samples])');
+                 N1_window=msecs(latidx-window_samples:latidx+window_samples),filt_erps(ch_to_plot,[latidx-window_samples:latidx+window_samples])';
+                 N1_lat=N1_window(N1_idx);
+                close;
+                
+                
+                 co3=comps(3)
+                [tempmin,latidx] = min(abs(msecs-peaklats(3)));
+                [P2_amp,P2_idx]=max(filt_erps(ch_to_plot,[latidx-window_samples:latidx+window_samples])');
+                 P2_window=msecs(latidx-window_samples:latidx+window_samples),filt_erps(ch_to_plot,[latidx-window_samples:latidx+window_samples])';
+                 P2_lat=P2_window(P2_idx);
+                close;
+                
+                
+                lats(1) = P1_lat;
+                lats(2) = N1_lat;
+                lats(3) = P2_lat;
+                amps(1) = P1_amp;
+                amps(2) = N1_amp;
+                amps(3) = P2_amp;
+                
+               
+%                 % Get the data (latency) index corresponding to the peak
+%                 % latency in the grand grand average ERP:
+%                 [tempmin, latidx] = min(abs(msecs-peaklats(co)));
+%                 figure,plot(msecs(latidx-window_samples:latidx+window_samples),filt_erps(ch_to_plot,[latidx-window_samples:latidx+window_samples])');
+%                 title(sprintf('Select the Peak for %s',comps{co}))
+%                 [x, y] = ginput(1);
+%                 %%%%%% 
+%                 % 
+%                 
+%                 close;
                 %filt_erps is filled in where there was VARIABLE name
                 % Now, because where you click may not correspond to an
                 % actual sample in the data... find the closest sample and
                 % it's amplitude:
                 
-                % find the closest latency available to the point selected.
-                [tempmin, latidx] = min(abs(msecs-x));
-                lat = msecs(latidx);
-                
-                % now find the amplitude at that latency.
-                amp = filt_erps(ch_to_plot,latidx);   
-                %amp = VARIABLE NAME(...
-                
-                lats(co) = lat;
-                amps(co) = amp;
-            end % for co
+%                 % find the closest latency available to the point selected.
+%                 [tempmin, latidx] = min(abs(msecs-x));
+%                 lat = msecs(latidx);
+%                 
+%                 % now find the amplitude at that latency.
+%                 amp = filt_erps(ch_to_plot,latidx);   
+%                 %amp = VARIABLE NAME(...
+%                 
+%                 lats(co) = lat;
+%                 amps(co) = amp;
+            %end % for co
             % Now, Print out these Latency and Amplitude values to the text file:
             % Condition     Group        P1     N1    P2
             if numel(comps) == 3
