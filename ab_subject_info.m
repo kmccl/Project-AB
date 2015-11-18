@@ -179,27 +179,36 @@ si.baseline.timerange = [-300 0]; % For ERPs.
 %      si.icacomps = [3 8];
 % elseif strcmpi(sub,'434')
 %      si.icacomps = [1 4];
-
-if strcmpi(sub,'409')
-     si.icacomps = [1 2]; 
-elseif strcmpi(sub,'410')
-     si.icacomps = [1 3]; 
-elseif strcmpi(sub,'421')
+% elseif strcmpi(sub,'409')
+%      si.icacomps = [1 2]; 
+% elseif strcmpi(sub,'410')
+%      si.icacomps = [1 3]; 
+% elseif strcmpi(sub,'421')
+%      si.icacomps = [1 4];  
+% elseif strcmpi(sub,'422')
+%      si.icacomps = [1 3];
+% elseif strcmpi(sub,'423')
+%      si.icacomps = [1 3];
+% elseif strcmpi(sub,'425')
+%      si.icacomps = [1 3];
+% elseif strcmpi(sub,'441')
+%      si.icacomps = [1 4];  
+% elseif strcmpi(sub,'445')
+%      si.icacomps = [1 7];
+% elseif strcmpi(sub,'446')
+%      si.icacomps = [1 4 7];
+% end
+if strcmpi(sub,'437')
+    si.icacomps = [1 2];
+elseif strcmpi(sub,'449')
+     si.icacomps = [2 3];
+elseif strcmpi(sub,'443')
+     si.icacomps = [1 2 3];
+elseif strcmpi(sub,'438')
      si.icacomps = [1 4];  
-elseif strcmpi(sub,'422')
-     si.icacomps = [1 3];
-elseif strcmpi(sub,'423')
-     si.icacomps = [1 3];
-elseif strcmpi(sub,'425')
-     si.icacomps = [1 3];
-elseif strcmpi(sub,'441')
-     si.icacomps = [1 4];  
-elseif strcmpi(sub,'445')
-     si.icacomps = [1 7];
-elseif strcmpi(sub,'446')
-     si.icacomps = [1 4 7];
+elseif strcmpi(sub,'448')
+     si.icacomps = [1 5];
 end
-
 
 % Threshold Artifact Rejection Settings:
 % Need to do artifact thresholding 2x:

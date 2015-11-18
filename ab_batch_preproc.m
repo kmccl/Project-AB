@@ -5,8 +5,8 @@
 %
 % KSM & KCB. One late night in the lab.  Robby don't be jealous.
 
-subjects = {'425' '441' '445' '446'};
-%'441''445' '446''409' '410' '421' '422' 
+subjects = {448};
+%'441''445' '446''409' '410' '421' '422' '437' '449' '443' '438'
 %437-something wrong. Error is:
 %Undefined function or variable "idx".
 %Error in ab_eeg_preproc (line 168)
