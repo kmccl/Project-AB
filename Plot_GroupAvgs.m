@@ -8,9 +8,11 @@ hold on
 plot(msecs,hlu_sl_erps(61,:)','-r','linewidth',3)
 hold on
 plot(msecs,hla_sl_erps(61,:)','-k','linewidth',3)
+plottools
 
 figure,plot(msecs,nh_spl_erps(61,:)', '-b', 'linewidth',3)
 hold on
 plot(msecs,hlu_spl_erps(61,:)','-r','linewidth',3)
 hold on
 plot(msecs,hla_spl_erps(61,:)','-k','linewidth',3)
+plottools

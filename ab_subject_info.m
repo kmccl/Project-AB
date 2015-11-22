@@ -135,70 +135,69 @@ si.baseline.timerange = [-300 0]; % For ERPs.
 % im_m_e_ar_i_v_i, then apply weights to im_m_e and THEN REJECT
 % COMPONENTS!!!!!
 % commented out 11/10 at 1109am
-% if strcmpi(sub,'393')
-%     si.icacomps = [1 7 9]; 
-% elseif strcmpi(sub,'395')
-%     si.icacomps = [1 3]; 
-% elseif strcmpi(sub,'396')
-%     si.icacomps = [1 4];  
-% elseif strcmpi(sub,'397')
-%     si.icacomps = [2]; 
-% elseif strcmpi(sub,'398')
-%     si.icacomps = [1 3 13]; 
-% elseif strcmpi(sub,'399')
-%     si.icacomps = [7 11]; 
-% elseif strcmpi(sub,'401')
-%     si.icacomps = [2 5 7 9]; 
-%  elseif strcmpi(sub,'402')
-%     si.icacomps = [5 7 14 16];
-% elseif strcmpi(sub,'403')
-%      si.icacomps = [1 2];
-% elseif strcmpi(sub,'405')
-%      si.icacomps = [1 3];
-% elseif strcmpi(sub,'406')
-%      si.icacomps = [1 3];
-% elseif strcmpi(sub,'407')
-%      si.icacomps = [1 3];
-% elseif strcmpi(sub,'408')
-%      si.icacomps = [1 4];
-% elseif strcmpi(sub,'417')
-%      si.icacomps = [1 2];
-% elseif strcmpi(sub,'418')
-%      si.icacomps = [1 3 4];
-% elseif strcmpi(sub,'421')
-%      si.icacomps = [1 4];
-% elseif strcmpi(sub,'423')
-%      si.icacomps = [1 2];
-% elseif strcmpi(sub,'427')
-%      si.icacomps = [1];
-% elseif strcmpi(sub,'429')
-%      si.icacomps = [1 4];
-% elseif strcmpi(sub,'430')
-%      si.icacomps = [1 4 30];
-% elseif strcmpi(sub,'431')
-%      si.icacomps = [3 8];
-% elseif strcmpi(sub,'434')
-%      si.icacomps = [1 4];
-% elseif strcmpi(sub,'409')
-%      si.icacomps = [1 2]; 
-% elseif strcmpi(sub,'410')
-%      si.icacomps = [1 3]; 
-% elseif strcmpi(sub,'421')
-%      si.icacomps = [1 4];  
-% elseif strcmpi(sub,'422')
-%      si.icacomps = [1 3];
-% elseif strcmpi(sub,'423')
-%      si.icacomps = [1 3];
-% elseif strcmpi(sub,'425')
-%      si.icacomps = [1 3];
-% elseif strcmpi(sub,'441')
-%      si.icacomps = [1 4];  
-% elseif strcmpi(sub,'445')
-%      si.icacomps = [1 7];
-% elseif strcmpi(sub,'446')
-%      si.icacomps = [1 4 7];
-% end
-if strcmpi(sub,'437')
+if strcmpi(sub,'393')
+    si.icacomps = [1 7 9]; 
+elseif strcmpi(sub,'395')
+    si.icacomps = [1 3]; 
+elseif strcmpi(sub,'396')
+    si.icacomps = [1 4];  
+elseif strcmpi(sub,'397')
+    si.icacomps = [2]; 
+elseif strcmpi(sub,'398')
+    si.icacomps = [1 3 13]; 
+elseif strcmpi(sub,'399')
+    si.icacomps = [7 11]; 
+elseif strcmpi(sub,'401')
+    si.icacomps = [2 5 7 9]; 
+ elseif strcmpi(sub,'402')
+    si.icacomps = [5 7 14 16];
+elseif strcmpi(sub,'403')
+     si.icacomps = [1 2];
+elseif strcmpi(sub,'405')
+     si.icacomps = [1 3];
+elseif strcmpi(sub,'406')
+     si.icacomps = [1 3];
+elseif strcmpi(sub,'407')
+     si.icacomps = [1 3];
+elseif strcmpi(sub,'408')
+     si.icacomps = [1 4];
+elseif strcmpi(sub,'417')
+     si.icacomps = [1 2];
+elseif strcmpi(sub,'418')
+     si.icacomps = [1 3 4];
+elseif strcmpi(sub,'421')
+     si.icacomps = [1 4];
+elseif strcmpi(sub,'423')
+     si.icacomps = [1 2];
+elseif strcmpi(sub,'427')
+     si.icacomps = [1];
+elseif strcmpi(sub,'429')
+     si.icacomps = [1 4];
+elseif strcmpi(sub,'430')
+     si.icacomps = [1 4 30];
+elseif strcmpi(sub,'431')
+     si.icacomps = [3 8];
+elseif strcmpi(sub,'434')
+     si.icacomps = [1 4];
+elseif strcmpi(sub,'409')
+     si.icacomps = [1 2]; 
+elseif strcmpi(sub,'410')
+     si.icacomps = [1 3]; 
+elseif strcmpi(sub,'421')
+     si.icacomps = [1 4];  
+elseif strcmpi(sub,'422')
+     si.icacomps = [1 3];
+elseif strcmpi(sub,'423')
+     si.icacomps = [1 3];
+elseif strcmpi(sub,'425')
+     si.icacomps = [1 3];
+elseif strcmpi(sub,'441')
+     si.icacomps = [1 4];  
+elseif strcmpi(sub,'445')
+     si.icacomps = [1 7];
+elseif strcmpi(sub,'446')
+     si.icacomps = [1 4 7];
+elseif strcmpi(sub,'437')
     si.icacomps = [1 2];
 elseif strcmpi(sub,'449')
      si.icacomps = [2 3];
@@ -208,6 +207,8 @@ elseif strcmpi(sub,'438')
      si.icacomps = [1 4];  
 elseif strcmpi(sub,'448')
      si.icacomps = [1 5];
+elseif strcmpi(sub,'450')
+     si.icacomps = [1 7];
 end
 
 % Threshold Artifact Rejection Settings:

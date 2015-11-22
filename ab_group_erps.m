@@ -115,7 +115,7 @@
 % Loop through each condition and get the group average ERP for each
 % channel:
 groups = {'HLA' 'HLU' 'NH'}; % don't change this order...
-subjects = {[398 401 403 405 430 431 434] [396 397 399 402 406 408 409 410 421 427 446 449 448] [393 395 407 417 418 422 423 425 429 441 445 437 443 438]};
+subjects = {[398 401 403 405 430 431 434] [396 397 399 402 406 408 409 410 421 427 446 449 448] [393 395 407 417 418 422 423 425 429 441 445 437 443 438 450]};
 conds = {'SPL' 'SL'}; % Don't change this order... it will screw things up when 
 % doing the group averages...
 

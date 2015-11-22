@@ -11,7 +11,7 @@ addpath(genpath('/Users/kmccl/Documents/MATLAB'));
 
 conds = {'SL' 'SPL'}; 
 groups = {'NH' 'HLU' 'HLA'}; % don't change this order...
-subjects = {[393 395 407 417 418 422 423 425 429 441 445 437 443 438] [396 397 399 402 406 408 409 410 421 427 446 449 448] [398 401 403 405 430 431 434]}; % Add in the additional subjects you've tested.
+subjects = {[393 395 407 417 418 422 423 425 429 441 445 437 443 438 450] [396 397 399 402 406 408 409 410 421 427 446 449 448] [398 401 403 405 430 431 434]}; % Add in the additional subjects you've tested.
 comps = {'P1' 'N1' 'P2'}; 
 
 % Setup main directory to load in Group data from:
