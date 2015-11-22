@@ -11,7 +11,7 @@ addpath(genpath('/Users/kmccl/Documents/MATLAB'));
 
 conds = {'SL' 'SPL'}; 
 groups = {'NH' 'HLU' 'HLA'}; % don't change this order...
-subjects = {[393 395 407 417 418 422 423 425 429 441 445] [396 397 399 402 406 408 409 410 421 427 446] [398 401 403 405 430 431 434]}; % Add in the additional subjects you've tested.
+subjects = {[393 395 407 417 418 422 423 425 429 441 445 437 443 438] [396 397 399 402 406 408 409 410 421 427 446 449 448] [398 401 403 405 430 431 434]}; % Add in the additional subjects you've tested.
 comps = {'P1' 'N1' 'P2'}; 
 
 % Setup main directory to load in Group data from:
@@ -163,7 +163,7 @@ end % for x
 % for n=1:length(PCA_comp_chan)
 %     ch_to_plot=(PCA_comp_chan )
 ch_to_plot= 61
-window_length = 40; % ms, Will plot +/- 20/40/80 ms on each side of the peak latency.
+window_length = 20; % ms, Will plot +/- 20/40/80 ms on each side of the peak latency.
 window_samples = round(window_length/(1000/EEG.srate));
 fid = fopen([in_dir,'ALL_Latencies.txt'],'wt');
 fid2 = fopen([in_dir,'ALL_Amplitudes.txt'],'wt');
@@ -209,7 +209,7 @@ for c = 1:numel(conds) % loop through each condition.
             lats = [];
             amps = [];
             %for co = 1:numel(comps)
-                 co1=comps(1)
+                 co1=comps(1);
                 [tempmin,latidx] = min(abs(msecs-peaklats(1)));
                 [P1_amp,P1_idx]=max(filt_erps(ch_to_plot,[latidx-window_samples:latidx+window_samples])');
                 P1_window=msecs(latidx-window_samples:latidx+window_samples),filt_erps(ch_to_plot,[latidx-window_samples:latidx+window_samples])';
@@ -218,7 +218,7 @@ for c = 1:numel(conds) % loop through each condition.
                 
               
                 
-                co2=comps(2)
+                co2=comps(2);
                 [tempmin,latidx] = min(abs(msecs-peaklats(2)));
                 [N1_amp,N1_idx]=min(filt_erps(ch_to_plot,[latidx-window_samples:latidx+window_samples])');
                  N1_window=msecs(latidx-window_samples:latidx+window_samples),filt_erps(ch_to_plot,[latidx-window_samples:latidx+window_samples])';
@@ -226,7 +226,7 @@ for c = 1:numel(conds) % loop through each condition.
                 close;
                 
                 
-                 co3=comps(3)
+                 co3=comps(3);
                 [tempmin,latidx] = min(abs(msecs-peaklats(3)));
                 [P2_amp,P2_idx]=max(filt_erps(ch_to_plot,[latidx-window_samples:latidx+window_samples])');
                  P2_window=msecs(latidx-window_samples:latidx+window_samples),filt_erps(ch_to_plot,[latidx-window_samples:latidx+window_samples])';
