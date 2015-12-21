@@ -15,21 +15,21 @@ subjects = {[393 395 407 417 418 422 423 425 429 437 438 441 443 445 450 453] [3
 comps = {'P1' 'N1' 'P2'}; 
 
 % Setup main directory to load in Group data from:
-in_dir = '/Users/kmccl/Documents/DATA/subjects/Groups/'; % all group .mat files should be here.
+in_dir = '/Users/kmccl/Documents/DATA/subjects/Groups/McClannahan/'; % all group .mat files should be here.
 
 % First, calculate Grand Average:
 % Load in the group average ERPs:
-load([in_dir,'Group_HLA_SPL.mat']); % 'hla_spl_erps', 'msecs'
-load([in_dir,'Group_HLA_SL.mat']); % 'hla_sl_erps'
-load([in_dir,'Group_HLU_SPL.mat']);% 'hlu_spl_erps'
-load([in_dir,'Group_HLU_SL.mat']); % 'hlu_sl_erps'
-load([in_dir,'Group_NH_SPL.mat']); % 'nh_spl_erps'
-load([in_dir,'Group_NH_SL.mat']); % 'nh_sl_erps'
+load([in_dir,'Group_HLA_SPL_Lap.mat']); % 'hla_spl_erps', 'msecs'
+load([in_dir,'Group_HLA_SL_Lap.mat']); % 'hla_sl_erps'
+load([in_dir,'Group_HLU_SPL_Lap.mat']);% 'hlu_spl_erps'
+load([in_dir,'Group_HLU_SL_Lap.mat']); % 'hlu_sl_erps'
+load([in_dir,'Group_NH_SPL_Lap.mat']); % 'nh_spl_erps'
+load([in_dir,'Group_NH_SL_Lap.mat']); % 'nh_sl_erps'
 
 % Now, average across the groups, at least for now separately for the SPL and SL
 % conditions...
-grand_avg_spl = (hla_spl_erps + hlu_spl_erps + nh_spl_erps)/3;
-grand_avg_sl = (hla_sl_erps + hlu_sl_erps + nh_sl_erps)/3;
+lap_grand_avg_spl= (hla_spl_laps + hlu_spl_laps + nh_spl_laps)/3;
+lap_grand_avg_sl = (hla_sl_laps + hlu_sl_laps + nh_sl_laps)/3;
 
 % Get cluster mean for channels with high loading on first PCA component
 % PCA_sf1_chans = [4 55 18 53 3 38 60 37 5 50 61 51 6 33 43 34 61];
@@ -39,9 +39,9 @@ grand_avg_sl = (hla_sl_erps + hlu_sl_erps + nh_sl_erps)/3;
 % Now, plot the grand averages for the SPL and SL Conditions and then
 % select the grand peaks for the P1, N1, and P2:
 % msecs variable should be loaded with the Group ERP .mat files.
-ch_to_plot = 34;
+ch_to_plot = 61;
 %ch_to_plot = mean_erps_cluster;
-figure,plot(msecs, grand_avg_spl(ch_to_plot,:));
+figure,plot(msecs, lap_grand_avg_spl(ch_to_plot,:));
 [x, y] = ginput(numel(comps)); % Select the peak P1, N1, and P2 in that order.
 % x = the Latencies clicked
 % y = the Amplitudes at those Latency.
@@ -56,13 +56,13 @@ for idx = 1:length(x)
     lat = msecs(latidx);
     
     % now find the amplitude at that latency.
-    amp = grand_avg_spl(ch_to_plot,latidx);
+    amp = lap_grand_avg_spl(ch_to_plot,latidx);
     
     lats(idx) = lat;
     amps(idx) = amp;
 end % for idx
 % Write out these Latency and Amplitude values to a text file:
-fid = fopen([in_dir,'GrandMeanValues_SPL.txt'],'wt');
+fid = fopen([in_dir,'Laps_GrandMeanValues_SPL.txt'],'wt');
 for x = 1:length(lats)
     fprintf(fid,'%g\t %g\n',lats(x), amps(x));
 end % for x
@@ -84,22 +84,22 @@ end
 for x = 1:length(times_to_plot)
     figure
     subplot(1,3,1)
-    topoplot(nh_spl_erps(:,idx(x)),EEG.chanlocs,'maplimits',[-3 3],'style','map');
+    topoplot(nh_spl_laps(:,idx(x)),EEG.chanlocs,'maplimits',[-3 3],'style','map');
     title(sprintf('NH SPL, Time: %s msec',num2str(times_to_plot(x))))
     
     subplot(1,3,2)
-    topoplot(hlu_spl_erps(:,idx(x)),EEG.chanlocs,'maplimits',[-3 3],'style','map');
+    topoplot(hlu_spl_laps(:,idx(x)),EEG.chanlocs,'maplimits',[-3 3],'style','map');
     title(sprintf('HLU SPL, Time: %s msec',num2str(times_to_plot(x))))
     
     subplot(1,3,3)
-    topoplot(hla_spl_erps(:,idx(x)),EEG.chanlocs,'maplimits',[-3 3],'style','map');
+    topoplot(hla_spl_laps(:,idx(x)),EEG.chanlocs,'maplimits',[-3 3],'style','map');
     title(sprintf('HLA SPL, Time: %s msec',num2str(times_to_plot(x))))
 end % for x
 
 
 % PLOT GRAND AVERAGES AND TOPOGRAPHY FOR THE SL CONDITIONS:
 %ch_to_plot = 61; % Channel 65 should correspond to Cz with EOG channels, 61 without.
-figure,plot(msecs, grand_avg_sl(ch_to_plot,:));
+figure,plot(msecs, lap_grand_avg_sl(ch_to_plot,:));
 [x, y] = ginput(numel(comps)); % Select the peak P1, N1, and P2 in that order.
 % x = the Latencies clicked
 % y = the Amplitudes at those Latency.
@@ -114,13 +114,13 @@ for idx = 1:length(x)
     lat = msecs(latidx);
     
     % now find the amplitude at that latency.
-    amp = grand_avg_sl(ch_to_plot,latidx);
+    amp = lap_grand_avg_sl(ch_to_plot,latidx);
     
     lats(idx) = lat;
     amps(idx) = amp;
 end % for idx
 % Write out these Latency and Amplitude values to a text file:
-fid = fopen([in_dir,'GrandMeanValues_SL.txt'],'wt');
+fid = fopen([in_dir,'Laps_GrandMeanValues_SL.txt'],'wt');
 for x = 1:length(lats)
     fprintf(fid,'%g\t %g\n',lats(x), amps(x));
 end % for x
@@ -136,15 +136,15 @@ end
 for x = 1:length(times_to_plot)
     figure
     subplot(1,3,1)
-    topoplot(nh_sl_erps(:,idx(x)),EEG.chanlocs,'maplimits',[-3 3],'style','map');
+    topoplot(nh_sl_laps(:,idx(x)),EEG.chanlocs,'maplimits',[-3 3],'style','map');
     title(sprintf('NH SL, Time: %s msec',num2str(times_to_plot(x))))
     
     subplot(1,3,2)
-    topoplot(hlu_sl_erps(:,idx(x)),EEG.chanlocs,'maplimits',[-3 3],'style','map');
+    topoplot(hlu_sl_laps(:,idx(x)),EEG.chanlocs,'maplimits',[-3 3],'style','map');
     title(sprintf('HLU SL, Time: %s msec',num2str(times_to_plot(x))))
     
     subplot(1,3,3)
-    topoplot(hla_sl_erps(:,idx(x)),EEG.chanlocs,'maplimits',[-3 3],'style','map');
+    topoplot(hla_sl_laps(:,idx(x)),EEG.chanlocs,'maplimits',[-3 3],'style','map');
     title(sprintf('HLA SL, Time: %s msec',num2str(times_to_plot(x))))
 end % for x
 
@@ -162,15 +162,15 @@ end % for x
 
 % for n=1:length(PCA_comp_chan)
 %     ch_to_plot=(PCA_comp_chan )
-ch_to_plot= 34
+ch_to_plot= 61
 window_length = 20; % ms, Will plot +/- 20/40/80 ms on each side of the peak latency.
 window_samples = round(window_length/(1000/EEG.srate));
-fid = fopen([in_dir,'ALL_Latencies.txt'],'wt');
-fid2 = fopen([in_dir,'ALL_Amplitudes.txt'],'wt');
+fid = fopen([in_dir,'ALL_Latencies_Laps.txt'],'wt');
+fid2 = fopen([in_dir,'ALL_Amplitudes_Laps.txt'],'wt');
 for c = 1:numel(conds) % loop through each condition.
     % Load in the text file with the Grand Average Peak Latencies for
     % this condition:
-    fid3 = fopen([in_dir,'GrandMeanValues_',conds{c},'.txt']);
+    fid3 = fopen([in_dir,'Laps_GrandMeanValues_',conds{c},'.txt']);
     temp = textscan(fid3,'%n %n');
     fclose(fid3);
     peaklats = temp{1};
@@ -211,8 +211,8 @@ for c = 1:numel(conds) % loop through each condition.
             %for co = 1:numel(comps)
                  co1=comps(1);
                 [tempmin,latidx] = min(abs(msecs-peaklats(1)));
-                [P1_amp,P1_idx]=max(filt_erps(ch_to_plot,[latidx-window_samples:latidx+window_samples])');
-                P1_window=msecs(latidx-window_samples:latidx+window_samples),filt_erps(ch_to_plot,[latidx-window_samples:latidx+window_samples])';
+                [P1_amp,P1_idx]=max(filt_laps(ch_to_plot,[latidx-window_samples:latidx+window_samples])');
+                P1_window=msecs(latidx-window_samples:latidx+window_samples),filt_laps(ch_to_plot,[latidx-window_samples:latidx+window_samples])';
                 P1_lat=P1_window(P1_idx);
                 close;
                 
@@ -220,16 +220,16 @@ for c = 1:numel(conds) % loop through each condition.
                 
                 co2=comps(2);
                 [tempmin,latidx] = min(abs(msecs-peaklats(2)));
-                [N1_amp,N1_idx]=min(filt_erps(ch_to_plot,[latidx-window_samples:latidx+window_samples])');
-                 N1_window=msecs(latidx-window_samples:latidx+window_samples),filt_erps(ch_to_plot,[latidx-window_samples:latidx+window_samples])';
+                [N1_amp,N1_idx]=min(filt_laps(ch_to_plot,[latidx-window_samples:latidx+window_samples])');
+                 N1_window=msecs(latidx-window_samples:latidx+window_samples),filt_laps(ch_to_plot,[latidx-window_samples:latidx+window_samples])';
                  N1_lat=N1_window(N1_idx);
                 close;
                 
                 
                  co3=comps(3);
                 [tempmin,latidx] = min(abs(msecs-peaklats(3)));
-                [P2_amp,P2_idx]=max(filt_erps(ch_to_plot,[latidx-window_samples:latidx+window_samples])');
-                 P2_window=msecs(latidx-window_samples:latidx+window_samples),filt_erps(ch_to_plot,[latidx-window_samples:latidx+window_samples])';
+                [P2_amp,P2_idx]=max(filt_laps(ch_to_plot,[latidx-window_samples:latidx+window_samples])');
+                 P2_window=msecs(latidx-window_samples:latidx+window_samples),filt_laps(ch_to_plot,[latidx-window_samples:latidx+window_samples])';
                  P2_lat=P2_window(P2_idx);
                 close;
                 

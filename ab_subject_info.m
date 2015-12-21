@@ -209,6 +209,12 @@ elseif strcmpi(sub,'448')
      si.icacomps = [1 5];
 elseif strcmpi(sub,'450')
      si.icacomps = [1 7];
+elseif strcmpi(sub,'433')
+     si.icacomps = [2];
+elseif strcmpi(sub,'436')
+     si.icacomps = [1 2];
+elseif strcmpi(sub,'453')
+     si.icacomps = [1 3];
 end
 
 % Threshold Artifact Rejection Settings:

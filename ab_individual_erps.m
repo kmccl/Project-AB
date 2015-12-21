@@ -1,7 +1,7 @@
 % This is an attempt to hack KBs ERP code for Project AB
 % KM June 2015
 
-subjects = {'450'};
+subjects = {'453'};
 group_dir = '/Users/kmccl/Documents/ProjectAB/group/erps';
 ab_erps = cell(length(subjects),1);
 

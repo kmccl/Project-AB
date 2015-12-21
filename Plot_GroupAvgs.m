@@ -3,16 +3,16 @@
 %KSM 11/2015
 %Check the ELP file for channel numbers
 
-figure,plot(msecs,nh_sl_erps(61,:)', '-b', 'linewidth',3)
+figure1=figure,plot(msecs,nh_sl_erps(13,:)', '-b', 'linewidth',3)
 hold on
-plot(msecs,hlu_sl_erps(61,:)','-r','linewidth',3)
+plot(msecs,hlu_sl_erps(13,:)','-r','linewidth',3)
 hold on
-plot(msecs,hla_sl_erps(61,:)','-k','linewidth',3)
+plot(msecs,hla_sl_erps(13,:)','-k','linewidth',3)
 plottools
 
-figure,plot(msecs,nh_spl_erps(61,:)', '-b', 'linewidth',3)
+figure2=figure,plot(msecs,nh_spl_erps(13,:)', '-b', 'linewidth',3)
 hold on
-plot(msecs,hlu_spl_erps(61,:)','-r','linewidth',3)
+plot(msecs,hlu_spl_erps(13,:)','-r','linewidth',3)
 hold on
-plot(msecs,hla_spl_erps(61,:)','-k','linewidth',3)
+plot(msecs,hla_spl_erps(13,:)','-k','linewidth',3)
 plottools
