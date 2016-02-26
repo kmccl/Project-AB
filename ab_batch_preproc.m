@@ -5,7 +5,7 @@
 %
 % KSM & KCB. One late night in the lab.  Robby don't be jealous.
 
-subjects = {448};
+subjects = {'455' '456'};
 %'441''445' '446''409' '410' '421' '422' '437' '449' '443' '438'
 %437-something wrong. Error is:
 %Undefined function or variable "idx".

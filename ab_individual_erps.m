@@ -1,17 +1,17 @@
 % This is an attempt to hack KBs ERP code for Project AB
 % KM June 2015
 
-subjects = {'453'};
+subjects = {'458'};
 group_dir = '/Users/kmccl/Documents/ProjectAB/group/erps';
 ab_erps = cell(length(subjects),1);
 
 for s = 1:length(subjects)
     [si] = ab_subject_info(subjects{s});
     in_dir = si.out_path; % Preproc directory
-            root_fn = [subjects{s},'_im_m_e_icacorr_r_b_a_s_SL'];
-             %root_fn = [subjects{s},'_im_m_e_icacorr_r_b_a_s_SPL'];
-             out_dir = ['/Users/kmccl/Documents/DATA/subjects/',subjects{s},'/erps/SL'];
-              %out_dir = ['/Users/kmccl/Documents/DATA/subjects/',subjects{s},'/erps/SPL'];
+            %root_fn = [subjects{s},'_im_m_e_icacorr_r_b_a_s_SL'];
+             root_fn = [subjects{s},'_im_m_e_icacorr_r_b_a_s_SPL'];
+             %out_dir = ['/Users/kmccl/Documents/DATA/subjects/',subjects{s},'/erps/SL'];
+              out_dir = ['/Users/kmccl/Documents/DATA/subjects/',subjects{s},'/erps/SPL'];
     if ~exist(out_dir,'dir')
         mkdir(out_dir);
     end

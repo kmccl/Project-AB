@@ -11,7 +11,7 @@ addpath(genpath('/Users/kmccl/Documents/MATLAB'));
 
 conds = {'SL' 'SPL'}; 
 groups = {'NH' 'HLU' 'HLA'}; % don't change this order...
-subjects = {[393 395 407 417 418 422 423 425 429 437 438 441 443 445 450 453] [396 397 399 402 406 408 409 410 421 427 433 436 446 448 449] [398 401 403 405 430 431 434]}; % Add in the additional subjects you've tested.
+subjects = {[393 395 407 417 418 423 425 429 437 438 441 443 445 450 455] [396 397 402 406 408 421 427 433 436 446 448 449 456] [398 401 403 405 430 431 434]}; % Add in the additional subjects you've tested.
 comps = {'P1' 'N1' 'P2'}; 
 
 % Setup main directory to load in Group data from:
@@ -39,7 +39,7 @@ lap_grand_avg_sl = (hla_sl_laps + hlu_sl_laps + nh_sl_laps)/3;
 % Now, plot the grand averages for the SPL and SL Conditions and then
 % select the grand peaks for the P1, N1, and P2:
 % msecs variable should be loaded with the Group ERP .mat files.
-ch_to_plot = 61;
+ch_to_plot = 42;
 %ch_to_plot = mean_erps_cluster;
 figure,plot(msecs, lap_grand_avg_spl(ch_to_plot,:));
 [x, y] = ginput(numel(comps)); % Select the peak P1, N1, and P2 in that order.
@@ -84,15 +84,15 @@ end
 for x = 1:length(times_to_plot)
     figure
     subplot(1,3,1)
-    topoplot(nh_spl_laps(:,idx(x)),EEG.chanlocs,'maplimits',[-3 3],'style','map');
+    topoplot(nh_spl_laps(:,idx(x)),EEG.chanlocs,'maplimits',[-12 12],'style','map');
     title(sprintf('NH SPL, Time: %s msec',num2str(times_to_plot(x))))
     
     subplot(1,3,2)
-    topoplot(hlu_spl_laps(:,idx(x)),EEG.chanlocs,'maplimits',[-3 3],'style','map');
+    topoplot(hlu_spl_laps(:,idx(x)),EEG.chanlocs,'maplimits',[-12 12],'style','map');
     title(sprintf('HLU SPL, Time: %s msec',num2str(times_to_plot(x))))
     
     subplot(1,3,3)
-    topoplot(hla_spl_laps(:,idx(x)),EEG.chanlocs,'maplimits',[-3 3],'style','map');
+    topoplot(hla_spl_laps(:,idx(x)),EEG.chanlocs,'maplimits',[-12 12],'style','map');
     title(sprintf('HLA SPL, Time: %s msec',num2str(times_to_plot(x))))
 end % for x
 
@@ -136,15 +136,15 @@ end
 for x = 1:length(times_to_plot)
     figure
     subplot(1,3,1)
-    topoplot(nh_sl_laps(:,idx(x)),EEG.chanlocs,'maplimits',[-3 3],'style','map');
+    topoplot(nh_sl_laps(:,idx(x)),EEG.chanlocs,'maplimits',[-12 12],'style','map');
     title(sprintf('NH SL, Time: %s msec',num2str(times_to_plot(x))))
     
     subplot(1,3,2)
-    topoplot(hlu_sl_laps(:,idx(x)),EEG.chanlocs,'maplimits',[-3 3],'style','map');
+    topoplot(hlu_sl_laps(:,idx(x)),EEG.chanlocs,'maplimits',[-12 12],'style','map');
     title(sprintf('HLU SL, Time: %s msec',num2str(times_to_plot(x))))
     
     subplot(1,3,3)
-    topoplot(hla_sl_laps(:,idx(x)),EEG.chanlocs,'maplimits',[-3 3],'style','map');
+    topoplot(hla_sl_laps(:,idx(x)),EEG.chanlocs,'maplimits',[-12 12],'style','map');
     title(sprintf('HLA SL, Time: %s msec',num2str(times_to_plot(x))))
 end % for x
 
@@ -162,7 +162,7 @@ end % for x
 
 % for n=1:length(PCA_comp_chan)
 %     ch_to_plot=(PCA_comp_chan )
-ch_to_plot= 61
+ch_to_plot= 42
 window_length = 20; % ms, Will plot +/- 20/40/80 ms on each side of the peak latency.
 window_samples = round(window_length/(1000/EEG.srate));
 fid = fopen([in_dir,'ALL_Latencies_Laps.txt'],'wt');
@@ -179,7 +179,7 @@ for c = 1:numel(conds) % loop through each condition.
         group_dir = [in_dir,groups{g},filesep,conds{c},filesep];
         for s = 1:length(subjects{g}) % loop through each subject
             % load in the Subject Data for this condition.
-            load([group_dir,conds{c},num2str(subjects{g}(s)),'_.mat']);
+            load([group_dir,conds{c},num2str(subjects{g}(s)),'_Lap.mat']);
             
 % % Average ERPs across channels ### for each condition, individual and then
 % % average for each group.
